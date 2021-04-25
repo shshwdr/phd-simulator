@@ -4,20 +4,23 @@
       {
         "input": "none",
         "actionName": "General Study",
-        "desc":"Get the first book you saw from library and start reading it.",
+        "_desc":"Get the first book you saw from library and start reading it.",
         "doActionDesc":"You are reading books...",
         "timeCost":1,
-        "result":[
+        "_result":[
+          
+          {"resultDesc":"You found an interesting paper", "resultItem":["paper"], "count":[2],"prob":0 },
           {"resultDesc":"You read some interesting books and learned a lot.", "resultItem":["knowledge"], "count":[2], "prob":1 }
         ]
       },
       {
         "input": "knowledge",
         "actionName": "Deep Study",
-        "desc":"You are interested in some areas and start searching around.",
+        "_desc":"You are interested in some areas and start searching around.",
         "doActionDesc":"You are reading related papers...",
         "timeCost":2,
-        "result":[{"resultDesc":"You found an interesting paper", "resultItem":["knowledge"], "count":[2],"prob":0 },
+        "_result":[
+          {"resultDesc":"You found an interesting paper", "resultItem":["paper"], "count":[2],"prob":0 },
           {"resultDesc":"You read some interesting papers and learned something", "resultItem":["knowledge"], "count":[1],"prob":1 },
           {"resultDesc":"You read some interesting papers and learned something special", "resultItem":["element"], "count":[1],"prob":1 },
           {"resultDesc":"You read a boring paper and wasted your time", "resultItem":["knowledge"], "count":[0],"prob":0.5 }
@@ -27,10 +30,10 @@
       {
         "input": "paper",
         "actionName": "Read Paper",
-        "description":"You investigate a specific paper.",
+        "_desc":"Read through the paper <{0}>.",
         "doActionDesc":"You are reading paper...",
         "timeCost":3,
-        "result":[{"resultDesc":"You found an interesting paper", "resultItem":"knowledge", "count":2,"prob":0 },
+        "_result":[{"resultDesc":"You get knowledge of {0} from it.", "resultItem":"vitualElement", "count":10,"prob":0 },
           {"resultDesc":"You read some interesting papers and learned something", "resultItem":"knowledge", "count":1,"prob":1 },
           {"resultDesc":"You read some interesting papers and learned something special", "resultItem":"element", "count":1,"prob":1 },
           {"resultDesc":"You read a boring paper and wasted your time", "resultItem":"knowledge", "count":0,"prob":0.5 }
@@ -40,10 +43,10 @@
       {
         "input": "element",
         "actionName": "Area Search",
-        "description":"You are interested in this area and find papers about it",
+        "_desc":"You are interested in this area and find papers about it",
         "doActionDesc":"You are searching related area...",
         "timeCost":3,
-        "result":[{"resultDesc":"You found an interesting paper", "resultItem":"knowledge", "count":2,"prob":0 },
+        "_result":[{"resultDesc":"You found an interesting paper", "resultItem":"knowledge", "count":2,"prob":0 },
           {"resultDesc":"You read some interesting papers and learned something", "resultItem":"knowledge", "count":1,"prob":1 },
           {"resultDesc":"You read some interesting papers and learned something special", "resultItem":"element", "count":1,"prob":1 },
           {"resultDesc":"You read a boring paper and wasted your time", "resultItem":"knowledge", "count":0,"prob":0.5 }

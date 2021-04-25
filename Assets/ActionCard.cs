@@ -2,6 +2,7 @@ using Doozy.Engine.Progress;
 using Doozy.Engine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public enum ActionCardState { wait, doing, done}
 public class ActionCard : MonoBehaviour
@@ -20,13 +21,22 @@ public class ActionCard : MonoBehaviour
 
     private void Start()
     {
-        selectedActionInfo = JsonManager.Instance.studyActionDict["none"];
+        changeSelectedAction(JsonManager.Instance.studyActionDict["none"]);
+        //selectedActionInfo = JsonManager.Instance.studyActionDict["none"];
 
         doItButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { doIt(); });
         collectButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { collect(); });
         selectMenuButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { openSelectMenu(); });
         collectButton.gameObject.SetActive(false);
+        selectMenu.card = this;
     }
+
+    public void changeSelectedAction(ActionInfo newInfo)
+    {
+        selectedActionInfo = newInfo;
+        selectMenuButton.GetComponentInChildren<TMP_Text>().text = newInfo.actionName;
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {

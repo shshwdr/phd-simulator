@@ -7,9 +7,16 @@ public class levelupInfo {
 }
 public class Inventory : Singleton<Inventory>
 {
+    //currency
     public Dictionary<string, int> countItems = new Dictionary<string, int>();
+    //paper
+    public Dictionary<string, float> toreadPapers = new Dictionary<string, float>();//how much have been read
+    //element
+    //item
+    //paper proposal
+    //paper submitted
 
-    public List<string> currencyNames = new List<string>(){ "knowledge"};
+    public List<string> currencyNames = new List<string>(){ "knowledge","money","reputation",};
 public Dictionary<string, levelupInfo> levelUpItem;
     // Start is called before the first frame update
     void Start()
@@ -17,16 +24,30 @@ public Dictionary<string, levelupInfo> levelUpItem;
         
     }
 
-
+    public bool isCurrency(string item)
+    {
+        foreach(var c in currencyNames)
+        {
+            if (item == c)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public bool isCountItem(string item)
     {
-        return true;
+        return isCurrency(item);
     }
     public void addItem(string item, int amount)
     {
         if (isCountItem(item))
         {
             addCountItem(item, amount);
+        }else if(item == "paper")
+        {
+            PaperInfo paperInfo = PaperGeneration.Instance.generatePaper();
+            toreadPapers[paperInfo.id] = 1;
         }
     }
     public void addCountItem(string item, int amount)
