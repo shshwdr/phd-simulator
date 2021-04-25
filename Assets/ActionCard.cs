@@ -12,6 +12,7 @@ public class ActionCard : MonoBehaviour
     protected float currentTime = 0;
     [SerializeField] protected GameObject doItButton;
     [SerializeField] protected GameObject collectButton;
+    [SerializeField] protected GameObject selectMenuButton;
     [SerializeField] protected Progressor progressor;
     [SerializeField] protected ActionMenu selectMenu;
 
@@ -23,7 +24,8 @@ public class ActionCard : MonoBehaviour
 
         doItButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { doIt(); });
         collectButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { collect(); });
-        //selectMenu.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { doIt(); });
+        selectMenuButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { openSelectMenu(); });
+        collectButton.gameObject.SetActive(false);
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -67,6 +69,8 @@ public class ActionCard : MonoBehaviour
         }
         cardState = ActionCardState.wait;
         progressor.gameObject.SetActive(false);
+
+        collectButton.SetActive(false);
         //show result view?
 
         //calculate probability to get each result
@@ -75,6 +79,7 @@ public class ActionCard : MonoBehaviour
         for(int i = 0; i < result.resultItem.Count; i++)
         {
             Debug.Log("get "+result.count[i]+" " + result.resultItem[i]);
+            Inventory.Instance.addItem(result.resultItem[i], result.count[i]);
         }
     }
 }

@@ -371,13 +371,14 @@ GameObject:
   - component: {fileID: 848693054}
   - component: {fileID: 848693053}
   - component: {fileID: 848693052}
+  - component: {fileID: 2492051462621119143}
   m_Layer: 0
   m_Name: collect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &848693051
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2590,7 +2591,7 @@ MonoBehaviour:
         Enabled: 0
         From: {x: 0, y: 0, z: 0}
         To: {x: 0, y: 0, z: 0}
-        By: {x: 0, y: 0, z: 0}
+        By: {x: 0, y: 10, z: 0}
         UseCustomFromAndTo: 0
         Vibrato: 10
         Elasticity: 1
@@ -2599,7 +2600,7 @@ MonoBehaviour:
         Direction: 0
         CustomPosition: {x: 0, y: 0, z: 0}
         EaseType: 0
-        Ease: 1
+        Ease: 30
         AnimationCurve:
           serializedVersion: 2
           m_Curve: []
@@ -2607,21 +2608,21 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         StartDelay: 0
-        Duration: 1
+        Duration: 1.6
       Rotate:
         AnimationType: 3
-        Enabled: 0
+        Enabled: 1
         From: {x: 0, y: 0, z: 0}
         To: {x: 0, y: 0, z: 0}
-        By: {x: 0, y: 0, z: 0}
+        By: {x: 0, y: 0, z: 10}
         UseCustomFromAndTo: 0
         Vibrato: 10
         Elasticity: 1
         NumberOfLoops: -1
         LoopType: 1
-        RotateMode: 1
+        RotateMode: 0
         EaseType: 0
-        Ease: 1
+        Ease: 28
         AnimationCurve:
           serializedVersion: 2
           m_Curve: []
@@ -2633,8 +2634,8 @@ MonoBehaviour:
       Scale:
         AnimationType: 3
         Enabled: 0
-        From: {x: 0, y: 0, z: 0}
-        To: {x: 0, y: 0, z: 0}
+        From: {x: 1, y: 1, z: 1}
+        To: {x: 1.2, y: 1.2, z: 1}
         By: {x: 0, y: 0, z: 0}
         UseCustomFromAndTo: 0
         Vibrato: 10
@@ -2642,7 +2643,7 @@ MonoBehaviour:
         NumberOfLoops: -1
         LoopType: 1
         EaseType: 0
-        Ease: 1
+        Ease: 35
         AnimationCurve:
           serializedVersion: 2
           m_Curve: []
@@ -2654,8 +2655,8 @@ MonoBehaviour:
       Fade:
         AnimationType: 3
         Enabled: 0
-        From: 0
-        To: 0
+        From: 0.4
+        To: 1
         By: 0.5
         UseCustomFromAndTo: 0
         NumberOfLoops: -1
@@ -2669,13 +2670,13 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         StartDelay: 0
-        Duration: 1
-    Enabled: 0
+        Duration: 0.8
+    Enabled: 1
     IsPlaying: 0
     LoopAnimationType: 0
     LoadSelectedPresetAtRuntime: 0
-    PresetCategory: 
-    PresetName: 
+    PresetCategory: Rotate
+    PresetName: Back10
   SelectedLoopAnimation:
     Animation:
       AnimationType: 3
@@ -2773,6 +2774,18 @@ MonoBehaviour:
   TargetLabel: 1
   TextLabel: {fileID: 0}
   TextMeshProLabel: {fileID: 0}
+--- !u!225 &2492051462621119143
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848693050}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3545064818316709398
 GameObject:
   m_ObjectHideFlags: 0
@@ -5550,6 +5563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doItButton: {fileID: 7559297365281819561}
   collectButton: {fileID: 848693050}
+  selectMenuButton: {fileID: 0}
   progressor: {fileID: 14608920}
   selectMenu: {fileID: 0}
 --- !u!1 &7559297366473116688
