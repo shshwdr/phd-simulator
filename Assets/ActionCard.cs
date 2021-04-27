@@ -34,7 +34,7 @@ public class ActionCard : MonoBehaviour
     public void changeSelectedAction(ActionInfo newInfo)
     {
         selectedActionInfo = newInfo;
-        selectMenuButton.GetComponentInChildren<TMP_Text>().text = newInfo.actionName;
+        selectMenuButton.GetComponentInChildren<TMP_Text>().text = newInfo.name;
     }
 
     // Update is called once per frame
@@ -63,6 +63,8 @@ public class ActionCard : MonoBehaviour
         cardState = ActionCardState.doing;
         currentTime = 0;
         progressor.gameObject.SetActive(true);
+        doItButton.SetActive(false);
+
     }
     public virtual void openSelectMenu() {
         if (cardState != ActionCardState.wait)
@@ -81,6 +83,8 @@ public class ActionCard : MonoBehaviour
         progressor.gameObject.SetActive(false);
 
         collectButton.SetActive(false);
+
+        doItButton.SetActive(true);
         //show result view?
 
         //calculate probability to get each result
@@ -89,7 +93,7 @@ public class ActionCard : MonoBehaviour
         for(int i = 0; i < result.resultItem.Count; i++)
         {
             Debug.Log("get "+result.count[i]+" " + result.resultItem[i]);
-            Inventory.Instance.addItem(result.resultItem[i], result.count[i]);
+            Inventory.Instance.addItem(result.resultItem[i], result.count[i],selectedActionInfo);
         }
     }
 }

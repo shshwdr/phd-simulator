@@ -24,6 +24,12 @@ public class PaperGeneration : Singleton<PaperGeneration>
     public Dictionary<string, PaperInfo> paperDict = new Dictionary<string, PaperInfo>();
     public float chanceToGeneratePaper()
     {
+        //if never has element, chance is 1, generate element paper
+        if (AchievementSystem.Instance.isAchieved("getElementPaper"))
+        {
+
+        }
+
         return 1;
     }
     public PaperInfo generatePaper()

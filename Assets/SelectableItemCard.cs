@@ -9,13 +9,13 @@ public class SelectableItemCard : MonoBehaviour
     ActionMenu parentMenu;
     [SerializeField] UIButton button;
     [SerializeField] TMP_Text nameText;
-    ActionInfo actionInfo;
-    public void updateCard(ActionInfo info, ActionMenu menu)
+    ObjectInfo actionInfo;
+    public void updateCard(ObjectInfo info, ActionMenu menu)
     {
         actionInfo = info;
         parentMenu = menu;
-        nameText.text = info.input;//todo: should find real name in item json
-        parentMenu.details.text = actionInfo.actionName + "\n" + actionInfo.desc;
+        nameText.text = info.name;//todo: should find real name in item json
+        updateDetail();
         button.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { select(); });
     }
 
@@ -27,8 +27,29 @@ public class SelectableItemCard : MonoBehaviour
 
     public void select()
     {
-        parentMenu.card.changeSelectedAction(actionInfo);
-        parentMenu.details.text = actionInfo.actionName + "\n" + actionInfo.desc;
+        if(actionInfo is ActionInfo)
+        {
+            parentMenu.card.changeSelectedAction(actionInfo as ActionInfo);
+
+        }
+        updateDetail();
+    }
+
+    void updateDetail()
+    {
+        if(parentMenu is CombineActionMenu)
+        {
+            ((CombineActionMenu)parentMenu).select(actionInfo);
+        }
+        else if (actionInfo is ActionInfo)
+        {
+            parentMenu.details.text = ((ActionInfo)actionInfo).actionName + "\n" + actionInfo.desc;
+        }
+        else
+        {
+
+            parentMenu.details.text = actionInfo.name + "\n" + actionInfo.desc + "\n" + actionInfo.currentValue;
+        }
     }
 
 

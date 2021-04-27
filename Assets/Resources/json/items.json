@@ -3,54 +3,35 @@
     [
       {
         "id": "knowledge",
-        "actionName": "General Study",
-        "desc":"Get the first book you saw from library and start reading it.",
-        "doActionDesc":"You are reading books...",
-        "timeCost":1,
-        "result":[
-          {"resultDesc":"You read some interesting books and learned a lot.", "resultItem":["knowledge"], "count":[2], "prob":1 }
-        ]
+        "_name": "Knowledge",
+        "_desc":"Knowledge is power."
       }
     ],
-    "papers":
-    [
-      {
-        "ritual": "sword",
-        "element": "none",
-        "actionName": "General Study",
-        "desc":"Get the first book you saw from library and start reading it.",
-        "doActionDesc":"You are reading books...",
-        "timeCost":1,
-        "result":[
-          {"resultDesc":"You read some interesting books and learned a lot.", "resultItem":["knowledge"], "count":[2], "prob":1 }
-        ]
-      }
-    ],
-    "ritual":
+    "rituals":
     [
       {
         "id": "sword",
-        "Name": "Magic Sword",
-        "desc":"Close combat weapon to deal direct damage to enemies.",
+        "_name": "Magic Sword",
+        "_desc":"Close combat weapon to deal direct damage to enemies.",
         "elements":["fire","earth","water","air","light","dark"]
       },{
         "id": "bolt",
-        "Name": "Arcane bolt",
-        "desc":"Ranged attack to deal pure magical damage to enemies.",
+        "_name": "Arcane bolt",
+        "_desc":"Ranged attack to deal pure magical damage to enemies.",
         "elements":["fire","earth","water","air","light","dark"]
       },{
         "id": "undead",
-        "Name": "Raise undead",
-        "desc":"Subservient beings made of physical matter and ill intent.",
+        "_name": "Raise undead",
+        "_desc":"Subservient beings made of physical matter and ill intent.",
         "elements":["fire","earth","water","air","light","dark"]
       }
     ],
-    "element":
+    "elements":
     [
       {
         "id": "fire",
-        "Name": "Fire",
-        "desc":"Fire is a destructive element, will ruin everything in the flame."
+        "_name": "Fire",
+        "_desc":"Fire is a destructive element, will ruin everything in the flame."
       }
     ]
   }
