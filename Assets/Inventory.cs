@@ -27,13 +27,14 @@ public class Inventory : Singleton<Inventory>
     //currency
     public Dictionary<string, int> countItems = new Dictionary<string, int>();
     //paper
-    public Dictionary<string, float> toreadPapers = new Dictionary<string, float>();//how much have been read
+    public Dictionary<string, PaperInfo> toreadPapers = new Dictionary<string, PaperInfo>();
     //element
     public Dictionary<string, LevelupInfo> elements = new Dictionary<string, LevelupInfo>();
     //ritual
     public Dictionary<string, LevelupInfo> rituals = new Dictionary<string, LevelupInfo>();
     //item
     //paper proposal
+    public Dictionary<string, PaperProposalInfo> paperProposals = new Dictionary<string, PaperProposalInfo>();
     //paper submitted
 
     public List<string> currencyNames = new List<string>(){ "knowledge","money","reputation",};
@@ -77,11 +78,11 @@ public class Inventory : Singleton<Inventory>
         else if(item == "paper")
         {
             PaperInfo paperInfo = PaperGeneration.Instance.generatePaper();
-            toreadPapers[paperInfo.id] = 1;
+            toreadPapers[paperInfo.id] = paperInfo;
             GetItemPopupManager.Instance.pushItem(paperInfo.title);
         }else if(item == "ritualElement")
         {
-            PaperInfo paperInfo = PaperGeneration.Instance.paperDict[((PaperStudyActionInfo)actionInfo).paperId];
+            PaperInfo paperInfo = ((PaperStudyActionInfo)actionInfo).paperInfo;
             var elementId = paperInfo.element;
             var ritualId = paperInfo.ritual;
             string selectItem = "element";
@@ -100,7 +101,7 @@ public class Inventory : Singleton<Inventory>
             string elementId;
             if (actionInfo is PaperStudyActionInfo)
             {
-                PaperInfo paperInfo = PaperGeneration.Instance.paperDict[((PaperStudyActionInfo)actionInfo).paperId];
+                PaperInfo paperInfo = ((PaperStudyActionInfo)actionInfo).paperInfo;
                 elementId = paperInfo.element;
 
             }
@@ -138,7 +139,7 @@ public class Inventory : Singleton<Inventory>
             string ritualId;
             if (actionInfo is PaperStudyActionInfo)
             {
-                PaperInfo paperInfo = PaperGeneration.Instance.paperDict[((PaperStudyActionInfo)actionInfo).paperId];
+                PaperInfo paperInfo = ((PaperStudyActionInfo)actionInfo).paperInfo;
                 ritualId = paperInfo.ritual;
             }
             else if (actionInfo is RitualStudyActionInfo)

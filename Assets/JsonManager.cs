@@ -74,9 +74,9 @@ public class StudyActionInfo : ActionInfo
 [Serializable]
 public class PaperStudyActionInfo : StudyActionInfo
 {
-    public string paperId;
-    public override string desc { get { return string.Format(_desc, PaperGeneration.Instance.paperDict[paperId].title); } }
-    public override string name { get { return PaperGeneration.Instance.paperDict[paperId].title; } }
+    public PaperInfo paperInfo;
+    public override string desc { get { return string.Format(_desc, paperInfo.title); } }
+    public override string name { get { return paperInfo.title; } }
 }
 
 public class ElementStudyActionInfo : StudyActionInfo

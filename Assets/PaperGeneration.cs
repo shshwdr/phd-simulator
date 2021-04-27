@@ -17,11 +17,18 @@ public class PaperInfo
             return "";
         } }
     public string id { get { return "paper_" + ritual + "_" + element; } }
+    public int readProgress = 0;
+}
+public enum paperProposalState { created, selected, cancelled};
+public class PaperProposalInfo : PaperInfo
+{
     public int score;
+    public paperProposalState state = paperProposalState.created;
+    public float writeProgress = 0;
 }
 public class PaperGeneration : Singleton<PaperGeneration>
 {
-    public Dictionary<string, PaperInfo> paperDict = new Dictionary<string, PaperInfo>();
+    //public Dictionary<string, PaperInfo> paperDict = new Dictionary<string, PaperInfo>();
     public float chanceToGeneratePaper()
     {
         //if never has element, chance is 1, generate element paper
@@ -38,10 +45,15 @@ public class PaperGeneration : Singleton<PaperGeneration>
         PaperInfo paperInfo = new PaperInfo();
         paperInfo.element = "fire";
         paperInfo.ritual = "none";
-        paperInfo.score = 1;
 
-        paperDict[paperInfo.id] = paperInfo;
         return paperInfo;
+    }
+
+    public void generatePaperProposal(ItemElementInfo element, ItemRitualInfo ritual)
+    {
+        PaperProposalInfo paperInfo = new PaperProposalInfo();
+        paperInfo.element = element.id;
+        paperInfo.ritual = ritual.id;
     }
     
     // Start is called before the first frame update

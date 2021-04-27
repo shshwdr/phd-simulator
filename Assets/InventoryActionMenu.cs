@@ -26,14 +26,14 @@ public class InventoryActionMenu : ActionMenu
         }
         foreach (var invPair in Inventory.Instance.toreadPapers)
         {
-            if (invPair.Value > 0)
+            //if (invPair.Value > 0)
             {
                // if (JsonManager.Instance.studyActionDict.ContainsKey("paper"))
                 {
                     itemsTransform.GetChild(i).gameObject.SetActive(true);
                     var serializedParent = JsonUtility.ToJson(JsonManager.Instance.studyActionDict["paper"]);
                     PaperStudyActionInfo newInfo = JsonUtility.FromJson<PaperStudyActionInfo>(serializedParent);
-                    newInfo.paperId = invPair.Key;
+                    newInfo.paperInfo = invPair.Value;
 
                     itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(newInfo, this);
                     i++;
