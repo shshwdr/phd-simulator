@@ -71,10 +71,14 @@ public class Inventory : Singleton<Inventory>
         if (isCountItem(item))
         {
             addCountItem(item, amount);
-        }else if(item == "paper")
+            var itemName = JsonManager.Instance.itemCurrencyDict[item].name;
+            GetItemPopupManager.Instance.pushItem(amount+" "+ itemName);
+        }
+        else if(item == "paper")
         {
             PaperInfo paperInfo = PaperGeneration.Instance.generatePaper();
             toreadPapers[paperInfo.id] = 1;
+            GetItemPopupManager.Instance.pushItem(paperInfo.title);
         }else if(item == "ritualElement")
         {
             PaperInfo paperInfo = PaperGeneration.Instance.paperDict[((PaperStudyActionInfo)actionInfo).paperId];
@@ -93,36 +97,75 @@ public class Inventory : Singleton<Inventory>
         }
         else if (item == "element")
         {
+            string elementId;
             if (actionInfo is PaperStudyActionInfo)
             {
                 PaperInfo paperInfo = PaperGeneration.Instance.paperDict[((PaperStudyActionInfo)actionInfo).paperId];
-                var elementId = paperInfo.element;
-                addExpToItem(elements, elementId, amount);
+                elementId = paperInfo.element;
+
             }
             else if (actionInfo is ElementStudyActionInfo)
             {
-                addExpToItem(elements, ((ElementStudyActionInfo)actionInfo).element, amount);
+                elementId = ((ElementStudyActionInfo)actionInfo).element;
             }
             else
             {
                 Debug.LogError("item type is wrong");
+                return;
+            }
+
+            var oldLevel = Inventory.Instance.elements.ContainsKey(elementId)? Inventory.Instance.elements[elementId].level:0;
+            addExpToItem(elements, elementId, amount);
+            var elementInfo = JsonManager.Instance.itemElementDict[elementId];
+            GetItemPopupManager.Instance.pushItem(amount+" EXP for "+ elementInfo.name);
+            var newLevel = Inventory.Instance.elements[elementId].level;
+            if (oldLevel != newLevel)
+            {
+
+                if (oldLevel == 0)
+                {
+                    GetItemPopupManager.Instance.pushLevelup(elementInfo.name + " unlocked!");
+                }
+                else
+                {
+
+                    GetItemPopupManager.Instance.pushLevelup(elementInfo.name + " level up to " + newLevel);
+                }
             }
         }
         else if (item == "ritual")
         {
+            string ritualId;
             if (actionInfo is PaperStudyActionInfo)
             {
                 PaperInfo paperInfo = PaperGeneration.Instance.paperDict[((PaperStudyActionInfo)actionInfo).paperId];
-                var elementId = paperInfo.ritual;
-                addExpToItem(rituals, elementId, amount);
+                ritualId = paperInfo.ritual;
             }
             else if (actionInfo is RitualStudyActionInfo)
             {
-                addExpToItem(rituals, ((RitualStudyActionInfo)actionInfo).ritual, amount);
+                ritualId = ((RitualStudyActionInfo)actionInfo).ritual;
             }
             else
             {
                 Debug.LogError("item type is wrong");
+                return;
+            }
+            var oldLevel = Inventory.Instance.rituals.ContainsKey(ritualId) ? Inventory.Instance.rituals[ritualId].level : 0;
+            addExpToItem(rituals, ritualId, amount);
+            var ritualInfo = JsonManager.Instance.itemRitualDict[ritualId];
+            GetItemPopupManager.Instance.pushItem(amount + " EXP for " + ritualInfo.name);
+            var newLevel = Inventory.Instance.rituals[ritualId].level;
+            if (oldLevel != newLevel)
+            {
+                if (oldLevel == 0)
+                {
+                    GetItemPopupManager.Instance.pushLevelup(ritualInfo.name + " unlocked!");
+                }
+                else
+                {
+
+                    GetItemPopupManager.Instance.pushLevelup(ritualInfo.name + " level up to " + newLevel);
+                }
             }
         }
     }

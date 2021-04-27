@@ -95,5 +95,6 @@ public class ActionCard : MonoBehaviour
             Debug.Log("get "+result.count[i]+" " + result.resultItem[i]);
             Inventory.Instance.addItem(result.resultItem[i], result.count[i],selectedActionInfo);
         }
+        GetItemPopupManager.Instance.showPreviousItems();
     }
 }
