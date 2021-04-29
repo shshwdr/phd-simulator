@@ -1,3 +1,4 @@
+using Doozy.Engine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,26 +9,11 @@ public class ShopActionMenu : ActionMenu
     {
         int i = 0;
 
-        // itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.studyActionDict["none"], this);
-        //i++;
-        foreach (var invPair in Inventory.Instance.countItems)
-        {
-            if (invPair.Value > 0)
-            {
-                if (JsonManager.Instance.studyActionDict.ContainsKey(invPair.Key))
-                {
-
-                    itemsTransform.GetChild(i).gameObject.SetActive(true);
-                    itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.itemCurrencyDict[invPair.Key], this);
-                    i++;
-                }
-            }
-        }
-        foreach (var invPair in Inventory.Instance.toreadPapers)
+        foreach (var invPair in JsonManager.Instance.itemExperimentToolDict)
         {
             //if (invPair.Value > 0)
             {
-                // if (JsonManager.Instance.studyActionDict.ContainsKey("paper"))
+                //if (JsonManager.Instance.studyActionDict.ContainsKey("element"))
                 {
                     itemsTransform.GetChild(i).gameObject.SetActive(true);
                     itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(invPair.Value, this);
@@ -35,44 +21,7 @@ public class ShopActionMenu : ActionMenu
                 }
             }
         }
-        foreach (var invPair in Inventory.Instance.elements)
-        {
-            //if (invPair.Value > 0)
-            {
-                //if (JsonManager.Instance.studyActionDict.ContainsKey("element"))
-                {
-                    itemsTransform.GetChild(i).gameObject.SetActive(true);
-                    itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.itemElementDict[invPair.Key], this);
-                    i++;
-                }
-            }
-        }
 
-        foreach (var invPair in Inventory.Instance.rituals)
-        {
-            //if (invPair.Value > 0)
-            {
-                //if (JsonManager.Instance.studyActionDict.ContainsKey("element"))
-                {
-                    itemsTransform.GetChild(i).gameObject.SetActive(true);
-                    itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.itemRitualDict[invPair.Key], this);
-                    i++;
-                }
-            }
-        }
-        foreach (var invPair in Inventory.Instance.paperProposals)
-        {
-            //if (invPair.Value > 0)
-            {
-                // if (JsonManager.Instance.studyActionDict.ContainsKey("paper"))
-                {
-                    itemsTransform.GetChild(i).gameObject.SetActive(true);
-
-                    itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(invPair.Value, this);
-                    i++;
-                }
-            }
-        }
         for (; i < itemsTransform.childCount; i++)
         {
             itemsTransform.GetChild(i).gameObject.SetActive(false);
@@ -80,7 +29,19 @@ public class ShopActionMenu : ActionMenu
     }
     public override void doAction()
     {
-        GetComponent<UIView>().Hide();
+        if(selectedInfo == null)
+        {
+            return;
+        }
+        Inventory.Instance.tryPurchaseItem(((PurchaseableInfo)selectedInfo));
+        itemsTransform.GetChild(0).GetComponent<SelectableItemCard>().updateDetail();
+        //GetComponent<UIView>().Hide();
         //card.doIt();
+    }
+
+    public override void updateDetails(ObjectInfo info = null)
+    {
+       
+        details.text = selectedInfo.name + "\n" + selectedInfo.desc + "\n" + selectedInfo.currentValue + "\n" + ((PurchaseableInfo)selectedInfo).costDesc;
     }
 }

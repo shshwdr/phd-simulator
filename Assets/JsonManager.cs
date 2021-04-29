@@ -25,17 +25,29 @@ public class ObjectInfo
     public virtual string currentValue { get { return ""; } }
 }
 [Serializable]
-public class ItemElementInfo : ObjectInfo
+public class ItemElementInfo : ItemInfo
 {
-    public bool isLocked;
     public int level { get { return Inventory.Instance.elements[id].level; } }
     public override string currentValue { get { var element = Inventory.Instance.elements[id]; 
             return "Level " + element.level+"  EXP "+ element.exp + " / "+ element.nextExp; } }
 }
+
 [Serializable]
-public class ItemRitualInfo : ObjectInfo
+public class ItemInfo : ObjectInfo
 {
+
     public bool isLocked;
+}
+[Serializable]
+public class PurchaseableInfo : ItemInfo
+{
+
+    public int cost;
+    public string costDesc { get { return "Cost: " + cost; } }
+}
+[Serializable]
+public class ItemRitualInfo : ItemInfo
+{
     public int level { get { return Inventory.Instance.rituals[id].level; } }
     public override string currentValue
     {
@@ -43,6 +55,19 @@ public class ItemRitualInfo : ObjectInfo
         {
             var element = Inventory.Instance.rituals[id];
             return "Level: " + element.level + "   EXP: " + element.exp + " / " + element.nextExp;
+        }
+    }
+}
+
+[Serializable]
+public class ItemExperimentToolInfo : PurchaseableInfo
+{
+
+    public override string currentValue
+    {
+        get
+        {
+            return "Amound: " + (Inventory.Instance.experimentTools.ContainsKey(id)? Inventory.Instance.experimentTools[id]:0);
         }
     }
 }
@@ -108,6 +133,7 @@ public class AllItemInfo
     public List<ItemCurrencyInfo> currencies;
     public List<ItemElementInfo> elements;
     public List<ItemRitualInfo> rituals;
+    public List<ItemExperimentToolInfo> experimentTools;
 
     //public List<StudyActionInfo> studyActions;
 }
@@ -117,6 +143,7 @@ public class JsonManager : Singleton<JsonManager>
     public Dictionary<string, ItemCurrencyInfo> itemCurrencyDict;
     public Dictionary<string, ItemElementInfo> itemElementDict;
     public Dictionary<string, ItemRitualInfo> itemRitualDict;
+    public Dictionary<string, ItemExperimentToolInfo> itemExperimentToolDict;
 
     void Awake()
     {
@@ -131,6 +158,7 @@ public class JsonManager : Singleton<JsonManager>
         itemCurrencyDict = allItemInfoList.currencies.ToDictionary(x => x.id, x => x);
         itemElementDict = allItemInfoList.elements.ToDictionary(x => x.id, x => x);
         itemRitualDict = allItemInfoList.rituals.ToDictionary(x => x.id, x => x);
+        itemExperimentToolDict = allItemInfoList.experimentTools.ToDictionary(x => x.id, x => x);
     }
     // Start is called before the first frame update
     void Start()

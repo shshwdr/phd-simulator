@@ -39,12 +39,15 @@ public class Inventory : Singleton<Inventory>
     public Dictionary<string, LevelupInfo> elements = new Dictionary<string, LevelupInfo>();
     //ritual
     public Dictionary<string, LevelupInfo> rituals = new Dictionary<string, LevelupInfo>();
+    //experiment tool
+
+    public Dictionary<string, int> experimentTools = new Dictionary<string, int>();
     //item
     //paper proposal
     public Dictionary<string, PaperProposalInfo> paperProposals = new Dictionary<string, PaperProposalInfo>();
     //paper submitted
 
-    public List<string> currencyNames = new List<string>(){ "knowledge","money","reputation",};
+    //public List<string> currencyNames = new List<string>(){ "knowledge", "coin", "reputation",};
 //public Dictionary<string, levelupInfo> levelUpItem;
     // Start is called before the first frame update
     void Start()
@@ -57,23 +60,45 @@ public class Inventory : Singleton<Inventory>
         // RitualStudyActionInfo info = new RitualStudyActionInfo();
         //info.ritual = "sword";
         //addItem("ritual", 1, info);
+        addItem("coin", 40, null);
     }
 
     public bool isCurrency(string item)
     {
-        foreach(var c in currencyNames)
-        {
-            if (item == c)
-            {
-                return true;
-            }
-        }
-        return false;
+        return JsonManager.Instance.itemCurrencyDict.ContainsKey(item);
+        
     }
     public bool isCountItem(string item)
     {
         return isCurrency(item);
     }
+
+    public void tryPurchaseItem(PurchaseableInfo info, int amount = 1)
+    {
+        if (canConsumeCountItem("coin", info.cost))
+        {
+            consumeCountItem("coin", info.cost);
+            addItem(info,amount);
+        }
+        else
+        {
+            GetItemPopupManager.Instance.showString("Not enough coins!");
+        }
+    }
+
+    public void addItem(ObjectInfo info,int amount = 1)
+    {
+        if(info is ItemExperimentToolInfo)
+        {
+            if (!experimentTools.ContainsKey(info.id))
+            {
+                experimentTools[info.id] = 0;
+            }
+            experimentTools[info.id] += 1;
+        
+        }
+    }
+
     public void addItem(string item, int amount,ActionInfo actionInfo)
     {
         if (isCountItem(item))

@@ -15,7 +15,7 @@ public class SelectableItemCard : MonoBehaviour
         actionInfo = info;
         parentMenu = menu;
         nameText.text = info.name;//todo: should find real name in item json
-        updateDetail();
+        //updateDetail();
         button.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { select(); });
     }
 
@@ -32,14 +32,19 @@ public class SelectableItemCard : MonoBehaviour
             parentMenu.card.changeSelectedAction(actionInfo as ActionInfo);
 
         }
+        parentMenu.selectedInfo = actionInfo;
         updateDetail();
     }
 
-    void updateDetail()
+    public void updateDetail()
     {
         if(parentMenu is CombineActionMenu)
         {
             ((CombineActionMenu)parentMenu).select(actionInfo);
+        }
+        else if (parentMenu is ShopActionMenu)
+        {
+            parentMenu.updateDetails();
         }
         else if (actionInfo is ActionInfo)
         {

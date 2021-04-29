@@ -13,9 +13,8 @@ public class HUD : Singleton<HUD>
 
     public void updateCurrencies()
     {
-        var currencies = Inventory.Instance. currencyNames;
         int i = 0;
-        foreach (var cur in currencies)
+        foreach (var cur in JsonManager.Instance.itemCurrencyDict.Keys)
         {
             if (Inventory.Instance.hasItem(cur))
             {

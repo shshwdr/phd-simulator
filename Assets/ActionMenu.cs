@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ActionMenu : MonoBehaviour
 {
+    public ObjectInfo selectedInfo;
     [SerializeField] protected Transform itemsTransform;
     public TMP_Text details;
     public ActionCard card;
@@ -19,7 +20,7 @@ public class ActionMenu : MonoBehaviour
         actionButton.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(delegate { doAction(); });
         
     }
-
+    public virtual void updateDetails(ObjectInfo info = null) { }
     protected virtual void updateItems() { }
 
     public virtual void doAction()

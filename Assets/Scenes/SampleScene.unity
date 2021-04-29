@@ -939,6 +939,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e3b09c26d31164093effa3b70cf5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedInfo:
+    _id: 
+    _name: 
+    _desc: 
   itemsTransform: {fileID: 842250253}
   details: {fileID: 71664142}
   card: {fileID: 0}
@@ -986,11 +990,15 @@ PrefabInstance:
     - target: {fileID: 1195828464, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: selectMenu
       value: 
-      objectReference: {fileID: 467762699}
+      objectReference: {fileID: 772141394}
     - target: {fileID: 1195828464, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: selectMenuButton
       value: 
       objectReference: {fileID: 78312547}
+    - target: {fileID: 688910515611200291, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: m_Name
       value: ShopActionCard
@@ -1077,6 +1085,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7018724305560575039, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018724306187462576, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7018724306187462578, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
@@ -2194,6 +2206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b26092c5cb7b334d910eb48b58824ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedInfo:
+    _id: 
+    _name: 
+    _desc: 
   itemsTransform: {fileID: 1912516980}
   details: {fileID: 1273323757}
   card: {fileID: 0}
@@ -5582,6 +5598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorkActionCard
       objectReference: {fileID: 0}
+    - target: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7018724305560575039, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5712,6 +5732,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1243844142}
     m_Modifications:
+    - target: {fileID: 1855435253809384954, guid: 4963b3bc66f163544a1cc597cbb96f77, type: 3}
+      propertyPath: m_text
+      value: Purchase
+      objectReference: {fileID: 0}
     - target: {fileID: 1993515367231557048, guid: 4963b3bc66f163544a1cc597cbb96f77, type: 3}
       propertyPath: m_text
       value: Shop
@@ -5831,6 +5855,10 @@ PrefabInstance:
     - target: {fileID: 1993515368125453558, guid: 4963b3bc66f163544a1cc597cbb96f77, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993515368982254926, guid: 4963b3bc66f163544a1cc597cbb96f77, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2898658320574155862, guid: 4963b3bc66f163544a1cc597cbb96f77, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6280,7 +6308,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1993515367460702535, guid: 4963b3bc66f163544a1cc597cbb96f77, type: 3}
   m_PrefabInstance: {fileID: 772141386}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &772141392
+--- !u!114 &772141394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6289,9 +6317,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 772141391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a49196d69dcddd2449ebda56a3c178a1, type: 3}
+  m_Script: {fileID: 11500000, guid: fa1e98a5b072c9641adda4cfc3f6e112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedInfo:
+    _id: 
+    _name: 
+    _desc: 
   itemsTransform: {fileID: 772141390}
   details: {fileID: 772141389}
   card: {fileID: 0}
@@ -6314,6 +6346,10 @@ PrefabInstance:
     - target: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: m_Name
       value: FriendActionCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7018724305560575039, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: m_Pivot.x
@@ -6567,6 +6603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbb997631c2fae4097d49b00871ceb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedInfo:
+    _id: 
+    _name: 
+    _desc: 
   itemsTransform: {fileID: 0}
   details: {fileID: 0}
   card: {fileID: 0}
@@ -9145,6 +9185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExperimentActionCard
       objectReference: {fileID: 0}
+    - target: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7018724305560575039, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9255,18 +9299,13 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7018724305560575039, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
   m_PrefabInstance: {fileID: 1003663028}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1003663030 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
-  m_PrefabInstance: {fileID: 1003663028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1003663031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003663030}
+  m_GameObject: {fileID: 1284583984}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d594025af4ed2f4aa327dd3740637ab, type: 3}
@@ -10021,6 +10060,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49196d69dcddd2449ebda56a3c178a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedInfo:
+    _id: 
+    _name: 
+    _desc: 
   itemsTransform: {fileID: 687266637}
   details: {fileID: 1175756080}
   card: {fileID: 0}
@@ -10508,6 +10551,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3715603595936221624, guid: e9d70d3167aa99f43aac7841d2f6c31b, type: 3}
   m_PrefabInstance: {fileID: 1277840812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1284583984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7018724305560575038, guid: 75a006d7cf5c93548b3297891342992b, type: 3}
+  m_PrefabInstance: {fileID: 1003663028}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1305935893
 PrefabInstance:
@@ -11174,8 +11222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c4628d345aae549b34611835710d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyNames:
-  - knowledge
 --- !u!114 &1406982094
 MonoBehaviour:
   m_ObjectHideFlags: 0

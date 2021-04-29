@@ -1,0 +1,19 @@
+{
+    "friends":
+    [
+      {
+        "_id": "senior",
+        "_name": "Mike",
+        "_desc":"A senior member in the same lab",
+        "dialogs":
+        [
+
+        ]
+      },
+      {
+        "_id": "peer",
+        "_name": "Henry",
+        "_desc":"phd student in the same lab"
+      }
+    ]
+  }

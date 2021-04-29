@@ -74,6 +74,19 @@ public class InventoryActionMenu : ActionMenu
                 }
             }
         }
+        foreach (var invPair in Inventory.Instance.experimentTools)
+        {
+            //if (invPair.Value > 0)
+            {
+                // if (JsonManager.Instance.studyActionDict.ContainsKey("paper"))
+                {
+                    itemsTransform.GetChild(i).gameObject.SetActive(true);
+
+                    itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.itemExperimentToolDict[invPair.Key], this);
+                    i++;
+                }
+            }
+        }
         for (; i < itemsTransform.childCount; i++)
         {
             itemsTransform.GetChild(i).gameObject.SetActive(false);

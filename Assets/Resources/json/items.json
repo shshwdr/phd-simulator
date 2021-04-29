@@ -5,6 +5,16 @@
         "_id": "knowledge",
         "_name": "Knowledge",
         "_desc":"Knowledge is power."
+      },
+      {
+        "_id": "coin",
+        "_name": "Coins",
+        "_desc":"Money is not everything, but..."
+      },
+      {
+        "_id": "reputation",
+        "_name": "Reputation",
+        "_desc":"Some smart words for reputation"
       }
     ],
     "rituals":
@@ -59,6 +69,23 @@
         "_name": "Light",
         "_desc":"Light is a destructive element, will ruin everything in the flame.",
         "isLocked":true
+      }
+    ],
+    "experimentTools":
+    [
+      {
+        "_id": "fire",
+        "_name": "Combustion Improver",
+        "_desc":"Help to make fire spells used easily.",
+        "cost":10
+      },
+      
+      
+      {
+        "_id": "bolt",
+        "_name": "Energy Tester",
+        "_desc":"Test how powerful a bolt energy is",
+        "cost":10
       }
     ]
   }
