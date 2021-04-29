@@ -2,68 +2,59 @@
     "studyActions":
     [
       {
-        "id": "none",
+        "_id": "none",
         "actionName": "General Study",
         "_name":"Nothing",
         "_desc":"Get the first book you saw from library and start reading it.",
         "doActionDesc":"You are reading books...",
         "timeCost":1,
         "result":[
-          
-          {"resultDesc":"You read some interesting books and learned a lot.", "resultItem":["knowledge"], "count":[2], "prob":1 }
+          {"resultDesc":"You read some interesting books and learned a lot.", "resultItem":["knowledge"], "count":[5], "prob":1 },
+          {"resultDesc":"Today is not your day, you doze off during reading zzz.", "resultItem":["knowledge"], "count":[3], "prob":1 },
+          {"resultDesc":"You read the books so long that you forgot to eat.", "resultItem":["knowledge"], "count":[8], "prob":1 }
         ]
       },
       {
-        "id": "knowledge",
+        "_id": "knowledge",
         "actionName": "Deep Study",
         "_name":"Knowledge",
         "_desc":"You are interested in some areas and start searching around.",
         "doActionDesc":"You are reading related papers...",
         "timeCost":2,
-        "_result":[
-          {"resultDesc":"You found an interesting paper", "resultItem":["paper"], "count":[2],"prob":0 },
-          {"resultDesc":"You read some interesting papers and learned something", "resultItem":["knowledge"], "count":[1],"prob":1 },
-          {"resultDesc":"You read some interesting papers and learned something special", "resultItem":["element"], "count":[1],"prob":1 },
-          {"resultDesc":"You read a boring paper and wasted your time", "resultItem":["knowledge"], "count":[0],"prob":0.5 }
+        "result":[
+          {"resultDesc":"You found an interesting paper worth dig into!", "resultItem":["paper"], "count":[2],"prob":-1 },
+          {"resultDesc":"You read some interesting papers and learned something", "resultItem":["knowledge"], "count":[2],"prob":1 },
+          {"resultDesc":"You stuck on the formula and theorem and time flies", "resultItem":["knowledge"], "count":[1],"prob":1 }
         
         ]
       },
       {
-        "id": "paper",
+        "_id": "paper",
         "actionName": "Read Paper",
         "_desc":"Read through the paper <{0}>.",
         "doActionDesc":"You are reading paper...",
         "timeCost":3,
-        "result":[{"resultDesc":"You get knowledge of {0} from it.", "resultItem":["ritualElement"], "count":[10],"prob":0 },
-          {"resultDesc":"You read some interesting papers and learned something", "resultItem":["knowledge"], "count":[1],"prob":1 },
-          {"resultDesc":"You read some interesting papers and learned something special", "resultItem":["element"], "count":[1],"prob":1 },
-          {"resultDesc":"You read a boring paper and wasted your time", "resultItem":["knowledge"], "count":[0],"prob":0.5 }
+        "result":[{"resultDesc":"You read the paper...", "resultItem":["ritualElement"], "count":[10],"prob":1 }
         
         ]
       },
       {
-        "id": "element",
+        "_id": "element",
         "actionName": "Element Research",
         "_desc":"You are interested in {0} element and keep learning it",
         "doActionDesc":"You are searching related area...",
         "timeCost":3,
-        "result":[{"resultDesc":"You learned more in element", "resultItem":["element"], "count":[3],"prob":0 },
-          {"resultDesc":"You read some interesting papers and learned something", "resultItem":"knowledge", "count":1,"prob":1 },
-          {"resultDesc":"You read some interesting papers and learned something special", "resultItem":"element", "count":1,"prob":1 },
-          {"resultDesc":"You read a boring paper and wasted your time", "resultItem":"knowledge", "count":0,"prob":0.5 }
+        "result":[{"resultDesc":"You learned more in element", "resultItem":["element"], "count":[3],"prob":1 }
         
         ]
       },
       {
-        "id": "ritual",
+        "_id": "ritual",
         "actionName": "Element Research",
         "_desc":"You are interested in {0} and keep learning it",
         "doActionDesc":"You are searching related area...",
         "timeCost":3,
-        "result":[{"resultDesc":"You learn more in ritual", "resultItem":["ritual"], "count":[3],"prob":0 },
-          {"resultDesc":"You read some interesting papers and learned something", "resultItem":"knowledge", "count":1,"prob":1 },
-          {"resultDesc":"You read some interesting papers and learned something special", "resultItem":"element", "count":1,"prob":1 },
-          {"resultDesc":"You read a boring paper and wasted your time", "resultItem":"knowledge", "count":0,"prob":0.5 }
+        "result":[{"resultDesc":"You learned more in ritual", "resultItem":["ritual"], "count":[3],"prob":1 }
         
         ]
       }

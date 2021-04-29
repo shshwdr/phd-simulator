@@ -87,13 +87,49 @@ public class ActionCard : MonoBehaviour
         doItButton.SetActive(true);
         //show result view?
 
-        //calculate probability to get each result
-
-        ActionResult result = selectedActionInfo.result[0];
-        for(int i = 0; i < result.resultItem.Count; i++)
+        ActionResult highPriorityResult = null;
+        List<ActionResult> results = new List<ActionResult>();
+        List<float> probs = new List<float>();
+        ActionResult selectedResult = null;
+        foreach (var r in selectedActionInfo.result)
         {
-            Debug.Log("get "+result.count[i]+" " + result.resultItem[i]);
-            Inventory.Instance.addItem(result.resultItem[i], result.count[i],selectedActionInfo);
+            if (r.prob < 0)
+            {
+                highPriorityResult = r;
+                continue;
+            }
+            else
+            {
+                results.Add(r);
+                probs.Add(r.prob);
+            }
+        }
+        if (highPriorityResult != null)
+        {
+            if(highPriorityResult.resultItem[0] == "paper")
+            {
+                if(Random.value< PaperGeneration.Instance.chanceToGeneratePaper())
+                {
+                    selectedResult = highPriorityResult;
+                }
+            }
+            else
+            {
+                selectedResult = highPriorityResult;
+            }
+        }
+
+        if (selectedResult == null)
+        {
+            int selectedId = Utils.getRandomInArrayDistribution(probs);
+            selectedResult = results[selectedId];
+        }
+
+        GetItemPopupManager.Instance.pushItem(selectedResult.resultDesc);
+        for(int i = 0; i < selectedResult.resultItem.Count; i++)
+        {
+            //Debug.Log("get "+ selectedResult.count[i]+" " + selectedResult.resultItem[i]);
+            Inventory.Instance.addItem(selectedResult.resultItem[i], selectedResult.count[i],selectedActionInfo);
         }
         GetItemPopupManager.Instance.showPreviousItems();
     }

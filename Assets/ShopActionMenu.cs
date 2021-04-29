@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Doozy.Engine.UI;
 
-public class InventoryActionMenu : ActionMenu
+public class ShopActionMenu : ActionMenu
 {
     protected override void updateItems()
     {
         int i = 0;
 
-       // itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.studyActionDict["none"], this);
+        // itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(JsonManager.Instance.studyActionDict["none"], this);
         //i++;
         foreach (var invPair in Inventory.Instance.countItems)
         {
@@ -28,7 +27,7 @@ public class InventoryActionMenu : ActionMenu
         {
             //if (invPair.Value > 0)
             {
-               // if (JsonManager.Instance.studyActionDict.ContainsKey("paper"))
+                // if (JsonManager.Instance.studyActionDict.ContainsKey("paper"))
                 {
                     itemsTransform.GetChild(i).gameObject.SetActive(true);
                     itemsTransform.GetChild(i).GetComponent<SelectableItemCard>().updateCard(invPair.Value, this);

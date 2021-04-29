@@ -6,7 +6,8 @@ public class LevelupInfo {
     public int exp;
     public int totalExp;
     //todo max level
-    public int nextExp { get { return levelToExp(level + 1); } }
+    public int nextExp { get { return levelToExp(level + 1) - levelToExp(level); } }
+    //public int nextTotalExp { get { return levelToExp(level + 1); } }
     public int levelToExp(int x)
     {
         return (int)(Mathf.Pow(x, 3) - 6 * x * x + 17 * x - 12) * 10 / 3;
@@ -14,12 +15,18 @@ public class LevelupInfo {
 
     public void addExp(int e)
     {
-        totalExp += e;
-        while (totalExp >= nextExp)
+        if (level == 0)
         {
+            level = 1;
+            return;
+        }
+        exp += e;
+        while (exp >= nextExp)
+        {
+            exp -= nextExp;
             level += 1;
         }
-        exp = totalExp - levelToExp(level);
+        //exp = totalExp - levelToExp(level);
     }
 }
 public class Inventory : Singleton<Inventory>
@@ -43,13 +50,13 @@ public class Inventory : Singleton<Inventory>
     void Start()
     {
         //test
-        addItem("paper", 1, null);
-        ElementStudyActionInfo infoe = new ElementStudyActionInfo();
-        infoe.element = "fire";
-        addItem("element", 1, infoe);
-         RitualStudyActionInfo info = new RitualStudyActionInfo();
-        info.ritual = "sword";
-        addItem("ritual", 1, info);
+        //addItem("paper", 1, null);
+        //ElementStudyActionInfo infoe = new ElementStudyActionInfo();
+        //infoe.element = "fire";
+        //addItem("element", 1, infoe);
+        // RitualStudyActionInfo info = new RitualStudyActionInfo();
+        //info.ritual = "sword";
+        //addItem("ritual", 1, info);
     }
 
     public bool isCurrency(string item)
@@ -79,7 +86,7 @@ public class Inventory : Singleton<Inventory>
         {
             PaperInfo paperInfo = PaperGeneration.Instance.generatePaper();
             toreadPapers[paperInfo.id] = paperInfo;
-            GetItemPopupManager.Instance.pushItem(paperInfo.title);
+            GetItemPopupManager.Instance.pushItem(paperInfo.name);
         }else if(item == "ritualElement")
         {
             PaperInfo paperInfo = ((PaperStudyActionInfo)actionInfo).paperInfo;
@@ -169,6 +176,11 @@ public class Inventory : Singleton<Inventory>
                 }
             }
         }
+    }
+
+    public void addPaperProposal(PaperProposalInfo info)
+    {
+        paperProposals[info.id] = info;
     }
     public void addExpToItem(Dictionary<string,LevelupInfo> dict, string item, int exp)
     {

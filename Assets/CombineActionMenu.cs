@@ -6,8 +6,8 @@ using UnityEngine;
 public class CombineActionMenu : ActionMenu
 {
     [SerializeField] protected Transform ritualItemsTransform;
-    ItemRitualInfo ritualInfo;
-    ItemElementInfo elementInfo;
+    [HideInInspector] public ItemRitualInfo ritualInfo;
+    [HideInInspector] public ItemElementInfo elementInfo;
     protected override void updateItems()
     {
         int i = 0;
@@ -66,8 +66,9 @@ public class CombineActionMenu : ActionMenu
     public override void doAction()
     {
         GetComponent<UIView>().Hide();
-        //card.doIt();
+        card.doIt();
         //combine!
+
     }
     public void select(ObjectInfo info)
     {
@@ -79,11 +80,11 @@ public class CombineActionMenu : ActionMenu
         {
             ritualInfo = (ItemRitualInfo)info;
         }
-        if (elementInfo==null)
+        if (elementInfo== null || elementInfo.id == "")
         {
 
             details.text = "please select an element to combine";
-        }else if (ritualInfo == null)
+        }else if (ritualInfo == null || ritualInfo.id == "")
         {
             details.text = "please select a ritual to combine";
         }

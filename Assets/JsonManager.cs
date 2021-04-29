@@ -14,8 +14,9 @@ public class ActionResult
 [Serializable]
 public class ObjectInfo
 {
-    public string id;
+    public string _id;
 
+    public virtual string id { get { return _id; } }
     public string _name;
     public virtual string name { get { return _name; } }
     public string _desc;
@@ -26,6 +27,7 @@ public class ObjectInfo
 [Serializable]
 public class ItemElementInfo : ObjectInfo
 {
+    public bool isLocked;
     public int level { get { return Inventory.Instance.elements[id].level; } }
     public override string currentValue { get { var element = Inventory.Instance.elements[id]; 
             return "Level " + element.level+"  EXP "+ element.exp + " / "+ element.nextExp; } }
@@ -33,6 +35,7 @@ public class ItemElementInfo : ObjectInfo
 [Serializable]
 public class ItemRitualInfo : ObjectInfo
 {
+    public bool isLocked;
     public int level { get { return Inventory.Instance.rituals[id].level; } }
     public override string currentValue
     {
@@ -75,8 +78,8 @@ public class StudyActionInfo : ActionInfo
 public class PaperStudyActionInfo : StudyActionInfo
 {
     public PaperInfo paperInfo;
-    public override string desc { get { return string.Format(_desc, paperInfo.title); } }
-    public override string name { get { return paperInfo.title; } }
+    public override string desc { get { return string.Format(_desc, paperInfo.name); } }
+    public override string name { get { return paperInfo.name; } }
 }
 
 public class ElementStudyActionInfo : StudyActionInfo

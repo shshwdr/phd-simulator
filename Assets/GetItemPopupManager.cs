@@ -15,7 +15,6 @@ public class GetItemPopupManager : Singleton<GetItemPopupManager>
     {
         
     }
-
     public void pushItem(string name)
     {
         items.Add(name);
@@ -26,10 +25,11 @@ public class GetItemPopupManager : Singleton<GetItemPopupManager>
     }
     public void showPreviousItems()
     {
-        string text = "You get:";
-        foreach(var t in items)
+        string text = items[0];
+        text += "\nYou get:";
+        for(int i = 1;i<items.Count;i++)
         {
-            text += "\n" + t;
+            text += "\n" + items[i];
         }
         showString(text);
         items.Clear();

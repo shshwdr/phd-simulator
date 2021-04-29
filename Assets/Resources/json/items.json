@@ -2,7 +2,7 @@
     "currencies":
     [
       {
-        "id": "knowledge",
+        "_id": "knowledge",
         "_name": "Knowledge",
         "_desc":"Knowledge is power."
       }
@@ -10,28 +10,55 @@
     "rituals":
     [
       {
-        "id": "sword",
+        "_id": "sword",
         "_name": "Magic Sword",
         "_desc":"Close combat weapon to deal direct damage to enemies.",
         "elements":["fire","earth","water","air","light","dark"]
       },{
-        "id": "bolt",
+        "_id": "bolt",
         "_name": "Arcane bolt",
         "_desc":"Ranged attack to deal pure magical damage to enemies.",
         "elements":["fire","earth","water","air","light","dark"]
       },{
-        "id": "undead",
+        "_id": "undead",
         "_name": "Raise undead",
         "_desc":"Subservient beings made of physical matter and ill intent.",
+        "elements":["fire","earth","water","air","light","dark"]
+      },{
+        "_id": "summon",
+        "_name": "Summon familiar",
+        "_desc":"Helpful beings of pure magic, meant to aid you in all matters.",
         "elements":["fire","earth","water","air","light","dark"]
       }
     ],
     "elements":
     [
       {
-        "id": "fire",
+        "_id": "fire",
         "_name": "Fire",
         "_desc":"Fire is a destructive element, will ruin everything in the flame."
+      },{
+        "_id": "water",
+        "_name": "Water",
+        "_desc":"Water is a Constructive element"
+      },{
+        "_id": "earth",
+        "_name": "Earth",
+        "_desc":"Earth is a Static element"
+      },{
+        "_id": "air",
+        "_name": "Air",
+        "_desc":"Air is a Dynamic element"
+      },{
+        "_id": "dark",
+        "_name": "Dark",
+        "_desc":"Dark is a destructive element, will ruin everything in the flame.",
+        "isLocked":true
+      },{
+        "_id": "light",
+        "_name": "Light",
+        "_desc":"Light is a destructive element, will ruin everything in the flame.",
+        "isLocked":true
       }
     ]
   }

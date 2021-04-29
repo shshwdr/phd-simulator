@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AchievementSystem : Singleton<AchievementSystem>
 {
-    Dictionary<string, bool> achievements;
+    Dictionary<string, bool> achievements = new Dictionary<string, bool>();
     // Start is called before the first frame update
     void Start()
     {
